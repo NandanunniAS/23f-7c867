@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+
+import os
+from fcloud import Friday
+from os import system, name
+from colorama import Fore, Style
+
+chat = []
+def update(msg, usr):
+    ''' Function to update chatbot '''
+    os.system('cls' if os.name == 'nt' else 'clear')
+    chat.append('\n')
+    if usr == 'me':
+        if len(msg) < 40:
+            s = ''
+            for i in range(50 - len(msg)):
+                s+=' '
+            chat.append(s + msg)
+        else:
+            for i in range(0, len(msg), 40):
+                if i < (len(msg) - 40):
+                    chat.append('          ' + msg[i:i+40])
+                else:
+                    chat.append('          ' + msg[i:])
+    else:
+        for i in range(0, len(msg), 40):
+            if i < (len(msg) - 40):
+                chat.append(msg[i:i+40])
+            else:
+                chat.append(msg[i:])
+
+    ai = False
+    for message in chat:
+        if ai:
+            print(Fore.BLUE, message, Style.RESET_ALL)
+        else:
+            print(message)
+        if message == '\n':
+            if ai:
+                ai = False
+            else:
+                ai = True
+
+    print('__________________________________________________\n')
+
+def interact():
+    ''' Function to interact with AI. '''
+    update('Hi !', 'ai')
+    online = True
+    while online:
+        print(Style.DIM, 'Type here : ', Style.RESET_ALL, Style.BRIGHT, end='')
+        message = input('')
+        print(Style.RESET_ALL)
+        update(message, 'me')
+        Friday.listen(message)
+        reply = Friday.reply()
+        online = not "bye" in message
+        update(reply, 'ai')
+
+
+if __name__ == '__main__':
+    try:
+        interact()
+    except KeyboardInterrupt:
+        update('Bye', 'me')
+        update('Bye. See you again.', 'ai')

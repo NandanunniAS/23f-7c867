@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <link rel="icon" href="{{ url_for('static', filename='img/friday.jpg') }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Friday</title>
+</head>
+
+<body>
+    <div class="chat-window">
+        <div class="header">
+            <img class="header-img" src="{{ url_for('static', filename='img/friday.jpg') }}" />
+            <div class="header-dtl">
+                <div class="header-dtl-name">Friday</div>
+                <div class="header-dtl-status" id="fstatus"></div>
+            </div>
+        </div>
+        <div id="chatbox" class="chatbox">
+            <div class='ai-msg'>
+                <div class='msg ai-text-msg'>Hi</div>
+            </div>
+            <div class='me-msg'>
+                <div class='msg me-text-msg'>Hi</div>
+            </div>
+            <div class='ai-msg'>
+                <div class='msg ai-text-msg'>Hi</div>
+            </div>
+            <div class='me-msg'>
+                <div class='msg me-text-msg'>Hi</div>
+            </div>
+        </div>
+        <div class="chat-messenger">
+            <form action="/" id="messenger">
+                <input type="text" name="message" placeholder="Type a message" autocomplete="off" />
+                <button type="submit">
+                    <span class="material-icons">near_me</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/messenger.js') }}"></script>
+</body>
+
+</html>
